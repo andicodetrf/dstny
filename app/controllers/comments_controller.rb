@@ -41,6 +41,7 @@ class CommentsController < ApplicationController
   def edit
     @question = Question.find(params[:question_id])
     @comment = Comment.find(params[:id])
+   end
   end
 
   def show
@@ -49,6 +50,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:user_id, :comment_text, :post_id)
+    params.require(:comment).permit(:user_id, :comment_text, :post_id, comment_images: [])
   end
 end
