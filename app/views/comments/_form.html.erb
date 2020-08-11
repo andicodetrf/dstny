@@ -5,6 +5,10 @@
         <%# <br/> %>
         <%= f.text_area :comment_text, class:"form-control" %>
     </p>
+    <div class="form-row">
+        <%= q.label :comment_images, "Images" %>
+        <%= q.file_field :comment_images, multiple: true, direct_upload: true, class: "btn btn-dark btn-sm" %>
+    </div>
     <p>
 <<<<<<< HEAD
         <%= f.submit 'Comment', class:"btn btn-primary btn-sm ml-2" %>

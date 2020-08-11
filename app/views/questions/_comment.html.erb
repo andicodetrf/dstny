@@ -17,6 +17,17 @@
     <p class="comment"><%= comment.comment_text %></p>
 
     <% if comment.question.user_id == comment.user_id %>
+    <%# added in image if saved under this section %>
+    <% if @question.comment_images.attached? %>
+        <% @question.comment_images.each do |img| %>
+            <div class="col text-center">
+                <div><%= image_tag img, style: 'height:150px;width:auto;' %></div>
+                <div><%= img.filename %></div>
+            </div>
+        <% end %>
+    <% end %>
+    
+    
     </div>
     <% end %>
     <%= render  "editcomment", comment: comment %>
