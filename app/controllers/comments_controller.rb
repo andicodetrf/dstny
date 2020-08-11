@@ -25,6 +25,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     # respond_to do |format|
     #   format.js
@@ -38,6 +39,10 @@ class CommentsController < ApplicationController
 =======
     respond_to do |format|
       format.js
+=======
+    # respond_to do |format|
+    #   format.js
+>>>>>>> included edit button
     if @comment.update(comment_params)
         flash[:notice] = "Comment Edited!"
         redirect_to question_path(@question.id)
@@ -57,7 +62,6 @@ class CommentsController < ApplicationController
   def edit
     @question = Question.find(params[:question_id])
     @comment = Comment.find(params[:id])
-   end
   end
 
   def show
