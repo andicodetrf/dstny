@@ -37,7 +37,6 @@ class QuestionsController < ApplicationController
     end
   end
 
-
   def show
     @comment = Comment.new
     @question = Question.find(params[:id])
@@ -46,7 +45,7 @@ class QuestionsController < ApplicationController
     if user_signed_in?
       @comment["user_id"] = current_user.id
     end
-      @category = @question.category
+    @category = @question.category
   end
 
   def edit
@@ -102,6 +101,22 @@ class QuestionsController < ApplicationController
       flash[:warning] = "Please try again."
       redirect_to question_path(@question.id)
     end
+  end
+
+  def search
+    puts "@@@@@@@@@@@@@@@@@"
+    puts params[:search_term]
+    puts "@@@@@@@@@@@@@@@@@"
+
+    @parameter = params[:search_term].downcase
+
+    @questions = Question.where(
+      "question_text ~* :parameter", parameter: "(\\m#{@parameter}\\M)",
+    ).or(
+      Question.where(
+        "description ~* :parameter", parameter: "(\\m#{@parameter}\\M)",
+      )
+    )
   end
 
   private
