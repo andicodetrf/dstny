@@ -22,6 +22,7 @@
         <% @question.comment_images.each do |img| %>
             <div class="col text-center">
                 <div><%= image_tag img, style: 'height:150px;width:auto;' %></div>
+                glnkdl
                 <div><%= img.filename %></div>
             </div>
         <% end %>
@@ -51,4 +52,3 @@
     <% end %>
 </div>
 <%= javascript_pack_tag 'comments' %>
-
