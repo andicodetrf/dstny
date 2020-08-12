@@ -1,5 +1,6 @@
 <div>
     <% @question.comments.each do |comment| %>
+<<<<<<< HEAD
 
     <p>
         <% if comment.user.avatar.attached? %>
@@ -24,18 +25,48 @@
                 <div><%= image_tag img, style: 'height:150px;width:auto;' %></div>
                 <div><%= img.filename %></div>
             </div>
+=======
+        <p>
+            <% if comment.user.avatar.attached? %>
+                <%= image_tag comment.user.avatar, class: "rounded-circle", height: 25 %>
+            <% else %>
+                <%= image_tag "/default_avatar.png",  height: 25 %>
+            <% end %>
+            <strong class="ml-1"><%= comment.user.username%> says ...</strong>
+        </p>
+        <% if user_signed_in? && comment.question.user_id == current_user.id && comment.user_id == current_user.id %>
+            <div class="note">
+>>>>>>> changed comments.js
         <% end %>
+        <div id="edit_comment" >
+            <h4>Comment by <%= comment.user.username%></h4>
+            <p class="comment"><%= comment.comment_text %></p>
+            <%# added in image to comment if saved under this section %>
+            <% if comment.comment_images.attached? %>
+                <% comment.comment_images.each do |img| %>
+                    <div class="col text-center">
+                        <div><%= image_tag img, style: 'height:150px;width:auto;' %></div>
+                        <div><%= img.filename %></div>
+                    </div>
+                <% end %>
+            <% end %>
+            <% if user_signed_in? && comment.question.user_id == current_user.id && comment.user_id == current_user.id %>
+        </div>
     <% end %>
+<<<<<<< HEAD
     
     
     </div>
     <% end %>
     <%= render  "editcomment", comment: comment %>
+=======
+        <%= render  "editcomment", comment: comment %>
+>>>>>>> changed comments.js
     <%# if user is not logged in, he can see comments and comment.user_id == current_user.id would not glitch out %>
-
-       <small class="text-muted"> Posted <%= time_ago_in_words(comment.created_at) %> ago </small>
+    <small class="text-muted"> Posted <%= time_ago_in_words(comment.created_at) %> ago </small>
 
     <% if user_signed_in?%>
+<<<<<<< HEAD
 
         <% if comment.user_id == current_user.id %>
             <span class="small">
@@ -46,6 +77,14 @@
         <% end %>
  
     <hr>
+=======
+        <% if comment.user_id == current_user.id %>
+            <%= link_to  "Edit", [comment.question, comment], method: :patch, class: "btn btn-warning edit-button ml-2", :remote => true %>
+            <span class="text-muted"> | </span>
+            <%= link_to  "Delete", [comment.question, comment], method: "delete", class: "btn btn-danger ml-2",data: { confirm: "Are you sure you want to delete this comment?"} %>
+        <% end %>
+        <hr>
+>>>>>>> changed comments.js
     <% end %>
 
     <% end %>
