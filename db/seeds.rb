@@ -38,21 +38,21 @@ num.times do |idx|
   expiry_date = Time.now + rand(6) * 60 * 60
   user_id = 1 + rand(10)
 
-  Question.create(
+  Question.create!(
     question_text: question_text,
     description: description,
     expiry_date: expiry_date,
     user_id: user_id,
   )
 
-  Option.create(
+  Option.create!(
     option_text: option_1,
     votes: 0,
     voters: [],
     question_id: idx + 1,
   )
 
-  Option.create(
+  Option.create!(
     option_text: option_2,
     votes: 0,
     voters: [],
@@ -66,7 +66,7 @@ end
   question_id = 1 + rand(10)
   user_id = 1 + rand(10)
 
-  Comment.create(
+  Comment.create!(
     comment_text: comment_text,
     question_id: question_id,
     user_id: user_id,
