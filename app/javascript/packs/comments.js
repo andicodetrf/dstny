@@ -4,8 +4,10 @@ $(document).on("turbolinks:load", function () {
         e.preventDefault()
         e.stopPropagation()
         // $(this).parent().prev().css("display", "block")
-        $(this).hide()
+
+        // $(this).hide() ///this to hide the "edit button" on the original show page
+
         // $(this).parent().prev().prev().hide()
-        document.querySelector(".edit_comment").style.display = "block";
+        document.querySelector(".edit_comment").style.display = "block"; //to show the "edit button" from the partial _editcomment
     })
 })
