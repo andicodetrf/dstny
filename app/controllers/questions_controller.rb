@@ -37,16 +37,16 @@ class QuestionsController < ApplicationController
     end
   end
 
-
   def show
-    @comment = Comment.new
+    @comment = Comment.new()
+    # @comment.images.attach(params[:comment][:comment_images])
     @question = Question.find(params[:id])
     @options = @question.options
 
     if user_signed_in?
       @comment["user_id"] = current_user.id
     end
-      @category = @question.category
+    @category = @question.category
   end
 
   def edit
@@ -102,6 +102,26 @@ class QuestionsController < ApplicationController
       flash[:warning] = "Please try again."
       redirect_to question_path(@question.id)
     end
+  end
+
+  def search
+    @parameter = params[:search_term].downcase
+
+    @questions = Question.where(
+      "question_text ~* :parameter", parameter: "(\\m#{@parameter}\\M)",
+    ).or(
+      Question.where(
+        "description ~* :parameter", parameter: "(\\m#{@parameter}\\M)",
+      )
+    )
+
+    @categories = Category.where(
+      "cat_type ~* :parameter", parameter: "(\\m#{@parameter}\\M)",
+    )
+
+    # @users = User.where(
+    #   "username ~* :parameter", parameter: "(\\m#{@parameter}\\M)",
+    # )
   end
 
   private

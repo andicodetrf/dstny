@@ -1,68 +1,85 @@
 <div class="container">
+	<div class="row mt-3">
+		<div class="col">
+			<% if @user.avatar.attached? %>
+			<%= image_tag @user.avatar, class: "rounded-circle", height: 50 %> <br>
+			<% else %>
+			<%= image_tag "/default_avatar.png",  height: 50 %> <br>
+			<% end %>
+		</div>
+	</div>
 
-    <div class="row mt-3">
-        <div class="col">
-            <% if @user.avatar.attached? %>
-                <%= image_tag @user.avatar, class: "rounded-circle", height: 50 %> <br>
-            <% else %>
-                <%= image_tag "/default_avatar.png",  height: 50 %> <br>
-            <% end %>
-        </div>
-    </div>
+	<div class="row">
+		<div class="col">
+			<h1> <%= @user.username %> </h1>
+			<%= @user.email %> <br>
+			<i> <%= @user.profile_description %> <br></i>
+		</div>
+	</div>
+	<br>
+
+<% if @user.questions.any? %>
+	<div class="row">
+		<div class="col">
+			<% if current_user %>
+			<% if current_user.id == @user.id %>
+			<h3><strong> Your polls </strong></h3>
+			<% else %>
+			<h3><strong><%= @user.username %>'s Polls</strong></h3>
+			<% end %>
+			<% else %>
+			<h3><strong><%= @user.username %>'s Polls</strong></h3>
+			<% end %>
+		</div>
+	</div>
+<% end %>
+
+
 
     <div class="row">
-        <div class="col">
-            <h1> <%= @user.username %> </h1>
-                <%= @user.email %> <br>
-            <i><%= @user.profile_description %> <br></i>
-        </div>
-    </div>
-
-    <br>
-    
-    <% if @user.questions.any? %>
-    <div class="row">
-        <div class="col">
-            <% if current_user %>
-                <% if current_user.id == @user.id %>
-                    <h3><strong> Your polls </strong></h3>
-                <% else %>
-                    <h3><strong> <%= @user.username %>'s polls </strong></h3>
-                <% end %>
-            <% end %>
-        </div>
-    </div>
-
-
-    <% @user.questions.each do |ques| %>
-    <div class="card mt-2">
-        <h3 class="card-header"> <%= link_to ques.question_text, question_path(ques) %> </h3>
-            <p class="card-title"> <%= ques.description %> </p>
-
-                <% votersArr = [] %>
-                <% ques.options.each do |o| %>
-                <% votersArr = votersArr + o.voters %>
-            <% end %>
-
-            <% if votersArr.any? %>
-                <% ques.options.each do |o| %>
-                    <div class="my-3">
-                        <%= o.option_text %>
-                        <% bar_len = ((o.votes.to_f / votersArr.length.to_f) * 100).round %>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width:<%= bar_len %>%"><%= o.votes %></div>
-                            </div>
-                        <% if current_user == @user %>
-                            <i><small class="text-secondary"><%= o.voters.join(", ") %></small></i>
+        <% @user.questions.each do |ques| %>
+            <div class="col-md-12 my-3">
+                <div class="card">
+                    <h5 class="card-header user-poll-links">
+                        <%= link_to ques.question_text, question_path(ques) %>
+                    </h5>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <%= ques.description %>
+                        </p>
+                        <% votersArr = [] %>
+                        <% ques.options.each do |o| %>
+                        <% votersArr = votersArr + o.voters %>
                         <% end %>
-                     </div>
-                <% end %>
-        </div>
+
+                        <% if votersArr.any? %>
+                            <% ques.options.each do |o| %>
+                            <div class="my-3">
+                                <%= o.option_text %>
+                                <% bar_len = ((o.votes.to_f / votersArr.length.to_f) * 100).round %>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: <%= bar_len %>%"> <%= o.votes %>
+                                        </div>
+                                    </div>
+                                <% if current_user == @user %>
+                                    <i><small class="text-secondary"><%= o.voters.join(", ") %></small></i>
+                                <% end %>
+
+                            </div>
+                            <% end %>
+                        <% end %>
+
+                        <span class="badge badge-warning">
+                            <%= link_to"##{ques.category.cat_type}", category_path(ques.category.id) %> 
+                        </span> <br>
+
+                    </div>
+                    <div class="card-footer text-muted text-right">
+                        <small> Posted: <%= (ques.created_at + 8.hours).strftime('%d %b %Y, %I:%M%p') %></small>
+                    </div>
+                </div>
+            </div>
+        
         <% end %>
-
     </div>
-    <% end %>
-    <% end %>
-
-
 </div>

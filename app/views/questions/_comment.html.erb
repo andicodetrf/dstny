@@ -1,43 +1,60 @@
-<div>
-    <% @question.comments.each do |comment| %>
+<% @question.comments.each do |comment| %>
 
-    <p>
-        <% if comment.user.avatar.attached? %>
-					<%= image_tag comment.user.avatar, class: "rounded-circle", height: 25 %>
+<p>
+	 <% if comment.user.avatar.attached? %>
+					<%= image_tag comment.user.avatar, class: "rounded-circle", height: 30, class:"def-com-img" %>
 					<% else %>
-					<%= image_tag "/default_avatar.png",  height: 25 %>
+					<%= image_tag "/default_avatar.png",  height: 30, class:"def-ava" %>
 		<% end %>
-        <strong class="ml-1"><%= comment.user.username%> says ...</strong>
-    </p>
-   
-    <% if comment.question.user_id == comment.user_id %>
-    <div class="note">
-    <% end %>
-
-    <p class="comment"><%= comment.comment_text %></p>
-
-    <% if comment.question.user_id == comment.user_id %>
-    </div>
-    <% end %>
-    <%= render  "editcomment", comment: comment %>
-    <%# if user is not logged in, he can see comments and comment.user_id == current_user.id would not glitch out %>
-
-       <small class="text-muted"> Posted <%= time_ago_in_words(comment.created_at) %> ago </small>
-
-    <% if user_signed_in?%>
-
-        <% if comment.user_id == current_user.id %>
-            <span class="small">
-            <%= link_to  "Edit", [comment.question, comment], method: :patch, class: "text-warning edit-button ml-2", :remote => true %>
-            <span class="text-muted"> | </span>
-            <%= link_to  "Delete", [comment.question, comment], method: "delete", class: "text-danger",data: { confirm: "Are you sure you want to delete this comment?"} %>
-            </span>
+        <% if comment.question.user_id == comment.user_id %>
+        <span class="badge badge-dark mb-1">OP</span>
         <% end %>
- 
-    <hr>
-    <% end %>
+	<strong class="ml-1"><%= comment.user.username%> says ...</strong>
+</p>
 
-    <% end %>
+<%# open div for OP colour  %>
+<% if comment.question.user_id == comment.user_id %>
+<div class="note">
+	<% end %>
+	<p class="comment"><%= comment.comment_text %></p>
+	<%# close div for OP colour  %>
+
+
+
+<%# added in image to comment if saved under this section %>
+<% if comment.comment_images.attached? %>
+<% comment.comment_images.each do |img| %>
+<div class="col text-center">
+	<div><%= image_tag img, style: 'height:150px;width:auto;' %></div>
+	<div><%= img.filename %></div>
 </div>
-<%= javascript_pack_tag 'comments' %>
+<% end %>
+<% end %>
 
+<% if comment.question.user_id == comment.user_id %>
+</div>
+<% end %>
+
+<div>
+
+	<%# edit comments partial  %>
+	<%= render  "editcomment", comment: comment %>
+    <%# <div class="mb-4"> %>
+	<small class="text-muted"> Posted <%= time_ago_in_words(comment.created_at) %> ago </small>
+    <%# </div> %>
+	<%# edit and delete buttons  %>
+	<% if user_signed_in?%>
+	<% if comment.user_id == current_user.id %>
+	<span class="small">
+		<%= link_to  "Edit", [comment.question, comment], method: :patch, data: { id: comment.id }, class: "text-warning edit-button ml-2", :remote => true %>
+		<span class="text-muted"> | </span>
+		<%= link_to  "Delete", [comment.question, comment], method: "delete", class: "text-danger",data: { confirm: "Are you sure you want to delete this comment?"} %>
+	</span>
+	<% end %>
+
+	<hr id="a">
+	<% end %>
+
+	<% end %>
+	<%= javascript_pack_tag 'comments' %>
+</div>

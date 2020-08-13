@@ -34,11 +34,12 @@ function addOptionInput(){
   });
   };
   
-  $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-  })
-
-  export { addOptionInput }
+  function displayToolTip(){
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+  }
+  export { addOptionInput, displayToolTip }
   
 
   //------------ SUPERSEDED CODES ---------------

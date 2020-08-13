@@ -5,11 +5,13 @@
     <title>Dstny</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="/faq256.png" type="image/png" >
+    
 </head>
 
 <body>
@@ -62,8 +64,8 @@
                 <li class="nav-item">
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+            <form action="/questions/search" class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search_term" />
                 <button class="btn btn-outline-warning my-2 my-sm-0 mr-2" type="submit">
                     Search
                 </button>
@@ -132,10 +134,12 @@
         
         <%= yield %>
         </article>
+        
         <footer>
-        <div id="cp-footer">© JARS 2020 </div>
+        <div id="cp-footer">© <a href="#">J</a><a href="#">A</a><a href="#">R</a><a href="#">S</a> 2020 </div>
         <a href="https://github.com/siu-sing/dstny"><img src="/GitHubLight32px.png" style="width:15px; height:15px; margin-top: 5px;"></a>
         </footer>
+        
 </body>
 <%# </div> %>
 

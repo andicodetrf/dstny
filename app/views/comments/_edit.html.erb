@@ -1,12 +1,14 @@
-<div id="edit_comment" >
 <h3>Edit Comment</h3>
 <%= form_for [ @question, @comment ] do |f| %>
     <p>
         <%= f.label :comment_text %><br/>
         <%= f.text_area :comment_text %>
     </p>
+    <div class="form-row">
+        <%= q.label :comment_images, "Images" %>
+        <%= q.file_field :comment_images, multiple: true, direct_upload: true, class: "btn btn-dark btn-sm" %>
+    </div>
     <p>
-        <%= f.submit 'Edit', class:"btn btn-warning btn-sm ml-2" %>
+        <%= f.submit 'Save Edit', class:"btn btn-warning btn-sm ml-2" %>
     </p>
 <% end %>
-</div> 

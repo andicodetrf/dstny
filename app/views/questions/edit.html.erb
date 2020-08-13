@@ -1,7 +1,7 @@
-<h1>Questions#edit</h1>
-<p>Find me in app/views/questions/edit.html.erb</p>
+<%# <h1>Questions#edit</h1>
+<p>Find me in app/views/questions/edit.html.erb</p> %>
 
-<div class="container mb-5">
+<div class="container mt-4">
 
 <% if @question.errors.any? %>
     <%= pluralize(@question.errors.count, "error") %>
@@ -24,27 +24,30 @@
     
     
 
-        <hr>
+    <hr class="hr-new">
 
-  <%= form_for @question do |q| %>
+    <div class="card">
+        <div class="card-body">
+        <%= form_for @question do |q| %>
 
-    <div class="form-row">
-      <%= q.label :description, "Description" %>
-      <%= q.text_area :description, class: "form-control", placeholder: "(Optional)" %>
+        <div class="form-row">
+        <%= q.label :description, "Description" %>
+        <%= q.text_area :description, class: "form-control", placeholder: "(Optional)" %>
+        </div>
+        <br>
+        <div class="form-row">
+            <%= q.label :question_images, "Upload Images" %>
+        </div>
+        <div class="form-row">
+            <%= q.file_field :question_images, multiple: true, direct_upload: true, class: "btn btn-dark btn-sm" %>
+        </div>
+        
+        <hr class="hr-new">
+
+        <%= q.submit "Save", class: "btn btn-success btn-sm px-4" %>
+        <%= link_to  "Cancel", question_path(@question), class:"btn btn-danger btn-sm px-4" %>
+
+        <% end %>
+        </div>
     </div>
-    <br>
-    <div class="form-row">
-        <%= q.label :question_images, "Upload Images" %>
-    </div>
-    <div class="form-row">
-        <%= q.file_field :question_images, multiple: true, direct_upload: true, class: "btn btn-dark btn-sm" %>
-      </div>
-    
-    <hr>
-
-    <%= q.submit "Edit", class: "btn btn-success btn-sm px-4" %>
-    <%= link_to  "Cancel", question_path(@question), class:"btn btn-danger btn-sm px-4" %>
-
-  <% end %>
-
 </div>

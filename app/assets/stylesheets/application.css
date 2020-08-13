@@ -13,11 +13,9 @@
  *= require_tree .
  *= require_self
  */
-
-
- html { 
+ 
+html { 
     height:100%; 
-    /* box-sizing: border-box; */
 }
 body{ 
     min-height:100%; 
@@ -25,47 +23,39 @@ body{
     margin:0; 
     position:relative; 
     font-family: 'Roboto', sans-serif;
-    background: linear-gradient(rgba(251, 251, 242,.8), rgba(251, 251, 242,.8)),url('/iconlife.jpg');
+    /* background: linear-gradient(rgba(251, 251, 242,.8), rgba(251, 251, 242,.8)),url('/iconlife.jpg'); */
+    background: linear-gradient(rgba(218, 242, 236,0.8), rgba(218, 244, 237, 0.66)),url('/iconlife.jpg');
 }
 
 body::after{ content:''; display:block; height:100px; }
 
-.jumb-bg{
-    background: #001524;
-    /* margin:  0 4rem; */
-    /* padding-bottom: -10px; */
-}
+
+
+
 
 .card-header {
     /* background:#264653; */
     background:#0f4c5c;
+    color:#fcbf49 !important;
 }
 
 .card-footer {
-    /* background:#264653; */
     background-color:rgba(80, 157, 143,0.7);
 }
 
 
-
-.card-body {
+.card-body, .card-res {
     /* background: #e5e5e5; */
-    background: #faf3dd;
+    background: rgba(244, 245, 245, 0.947);
+    /* background: #faf3dd; */
     /* background-color: #fcf5c7; */
 }
 
-.card-header h5{
-    color:#fcbf49 !important;
-}
 
 /* .card-index a {
-    color:black !important;
-    text-decoration: none !important
-  }
-
 
 } */
-  .cat-index,.cat-index a{
+  .cat-index a{
     color: #0f4c5c !important;
 }
 
@@ -83,41 +73,86 @@ body::after{ content:''; display:block; height:100px; }
 }
 
 .def-ava {
-    background-color: #FFF;
+    background-color: #DDDDDD;
     border-radius: 50%;
     margin-bottom: -5px;
     margin-right: 5px;
 }
 
+
 .hr-new{
     border: 1px solid transparent;
 }
 
+
+
+.jumb-bg{
+    background: #001524;
+    /* background: white; */
+    /* margin:  0 4rem; */
+    /* padding-bottom: -10px; */
+}
+
+
+
 .jumb-anim {
-        /* background-color: #DDDDDD; */
-        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-        font-size: 2rem;
-        font-weight:  100;
-        letter-spacing: 2px;
-        margin: -10px auto;
-        /* margin-bottom: -50px; */
-        /* text-align: center; */
-        color: #f35626;
-        background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        -webkit-animation: hue 10s infinite linear;
+    /* background-color: #DDDDDD; */
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 2rem;
+    font-weight:  100;
+    letter-spacing: 2px;
+    margin: -10px auto;
+    /* margin-bottom: -50px; */
+    /* text-align: center; */
+    color: #f35626;
+    background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-animation: hue 10s infinite linear;
 }
 
 @-webkit-keyframes hue {
     from {
-      -webkit-filter: hue-rotate(0deg);
+    -webkit-filter: hue-rotate(0deg);
     }
     to {
-      -webkit-filter: hue-rotate(-360deg);
+    -webkit-filter: hue-rotate(-360deg);
     }
-  }
-  
+}
+
+
+@media screen and (max-width: 500px) { 
+    .jumb-bg{
+        /* background: #001524; */
+        background: #001524;
+        /* position: relative;
+        z-index: -2; */
+        /* margin:  0 4rem; */
+        /* padding-bottom: -10px; */
+    }
+
+
+    .jumb-anim {
+        display: none;
+    }
+
+    .mobile-jumbo {
+        padding-top: 15px;
+        margin-bottom: -2px;
+        background:  #001524;
+        text-align: center;
+    }
+    .mb-jumbo-lead:before {
+        color: #fcbf49;
+        content: "Sick of Decisions?";
+    }
+    .mb-jumbo-follow:before {
+        color: #fcbf49;
+        content: "Let us render your destiny today!";
+    }
+
+    }
+
 
 
 .navbar-custom { 
@@ -190,6 +225,8 @@ body::after{ content:''; display:block; height:100px; }
     margin-bottom: 20px;
 }
 
+article{ width:100%; margin:0 auto; color:#444;  }
+
 footer{ 
   position:absolute; 
   bottom:0; 
@@ -202,11 +239,28 @@ footer{
   margin-bottom: -1px;
 }
 
-
-article{ width:100%; margin:0 auto; color:#444;  }
-
 footer{ background: #0f4c5c; }
+
+footer a {
+    color: #fcbf49;
+    
+}
+
+footer a:hover{
+    color:#fff;
+    text-decoration: none;
+}
+
+
+
+
 
 #cp-footer{
     letter-spacing: 2px;
 }
+
+
+@media screen and (max-width: 400px) {
+
+
+  }

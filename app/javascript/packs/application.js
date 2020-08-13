@@ -23,9 +23,10 @@ require("channels")
 // const imagePath = (name) => images(name, true)
 
 import { addOptionInput } from "packs/addOptionInput"
+import { displayToolTip } from "./addOptionInput"
 
 document.addEventListener("turbolinks:load", () => {
-
+displayToolTip();
     if (document.querySelector(".listForm")) {
         console.log('in app.js')
         addOptionInput()

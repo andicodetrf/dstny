@@ -3,6 +3,16 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 // this background colour would be assigned to the OP in comments 
-.note {
-    background: #fff9d8
+// .note {
+//     // background: #fff9d8
+//     color: #db3a34;
+//     // font-style: italic;
+// }
+
+.def-com-img{
+    border-radius:50%;
+    width: 30px;
+    object-fit: cover;
+    margin-bottom: -5px;
+    margin-right: 5px;
 }
