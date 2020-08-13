@@ -5,9 +5,11 @@ $(document).on("turbolinks:load", function () {
         e.stopPropagation()
         // $(this).parent().prev().css("display", "block")
 
-        // $(this).hide() ///this to hide the "edit button" on the original show page
-
+        $(this).hide() ///this to hide the "edit button" on the original show page
+        let id = $(this).data('id')
+        console.log(id)
         // $(this).parent().prev().prev().hide()
-        document.querySelector(".edit_comment").style.display = "block"; //to show the "edit button" from the partial _editcomment
+        // console.log(document.querySelector(`#edit_comment_${id}`))
+        document.querySelector(`#edit_comment_${id}`).style.display = "block"; //to show the "edit button" from the partial _editcomment
     })
 })
