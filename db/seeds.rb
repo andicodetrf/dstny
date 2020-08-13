@@ -5,36 +5,36 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-​
+
 Faker::Config.random = Random.new(42)
 num = 10
-​
+
 # Generate 10 random users
 num.times do |idx|
   gender = idx % 2 == 1 ? "men" : "women"
-​
+
   if gender == "men"
     username = Faker::Name.unique.male_first_name.downcase
   else
     username = Faker::Name.unique.female_first_name.downcase
   end
-​
+
   email = Faker::Internet.free_email(name: username)
   password = "qwer1234"
   profile_description = Faker::TvShows::TheITCrowd.quote
-​
+
   if idx == 0
     role = 1
   else
     role = 0
   end
-​
+
   u = User.create! :username => username, :email => email, :password => password, :password_confirmation => password, :profile_description => profile_description, :role => role
-​
+
   image_url = "https://randomuser.me/api/portraits/#{gender}/#{idx + 1}.jpg"
   u.avatar.attach(io: URI.open(image_url), filename: "avatar_#{idx + 1}.jpg")
 end
-​
+
 c_seed = [
   "", "relationship", "fashion", "food", "colour", "career", "travel", "exercise", "pets",
 ]
@@ -59,7 +59,7 @@ q_seed = [
   { "question_text" => "Should i get a corgi or a frenchie for my next dog?", "description" => "I love both. it's a tough choice", "category_id" => 9 },
   { "question_text" => "How much should i give for a colleague's wedding?", "description" => "I don't want to look too stingy but i don't really like my colleague", "category_id" => 1 },
 ]
-​
+
 o_seed = [
   [{ "option_text" => "Dress" }, { "option_text" => "Pantsuit" }],
   [{ "option_text" => "Stay home " }, { "option_text" => "10 km run" }, { "option_text" => "10km run at home" }],
@@ -81,14 +81,14 @@ o_seed = [
   [{ "option_text" => "Corgi" }, { "option_text" => "Frenchie" }],
   [{ "option_text" => "20" }, { "option_text" => "50" }, { "option_text" => "88" }],
 ]
-​
+
 c_seed.each_with_index do |c, idx|
   Category.create(
     id: idx + 1,
     cat_type: c,
   )
 end
-​
+
 q_seed.each_with_index do |q, idx|
   Question.create!(
     id: idx + 1,
@@ -99,12 +99,12 @@ q_seed.each_with_index do |q, idx|
     category_id: q["category_id"],
     status: true,
   )
-​
+
   w_vote_count = rand(1..9)
   votes_arr = [w_vote_count, 10 - w_vote_count, 0, 0]
   basearr = (1..10).to_a.shuffle
   voters_arr = [basearr[0..w_vote_count - 1], basearr[w_vote_count..10], [], []]
-​
+
   o_seed[idx].each_with_index do |o, i|
     Option.create(
       option_text: o["option_text"],
@@ -114,7 +114,7 @@ q_seed.each_with_index do |q, idx|
     )
   end
 end
-​
+
 comment_seed = [
   { "comment_text" => "Wear the blue dress la", "question_id" => 1 },
   { "comment_text" => "don't wear anything", "question_id" => 1 },
@@ -133,7 +133,7 @@ comment_seed = [
   { "comment_text" => "dabian", "question_id" => 4 },
   { "comment_text" => "MLXG", "question_id" => 4 },
 ]
-​
+
 comment_seed.each do |c|
   Comment.create(
     comment_text: c["comment_text"],
