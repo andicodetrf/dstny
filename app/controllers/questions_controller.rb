@@ -110,12 +110,6 @@ class QuestionsController < ApplicationController
 
   def question_params
     params.require(:question).permit(:question_text, :description, :user_id, :comment_text, :expiry_date, options_attributes: [:option_text], question_images: [], category_attributes: [:id, :cat_type])
-<<<<<<< HEAD
-=======
-    params.require(:question).permit(:question_text, :description, :user_id, :comment_text, :expiry_date, question_images: [], comment_images: [],options_attributes: [:option_text])
->>>>>>> add images to comments
-=======
->>>>>>> added pics
   end
 
   def set_question

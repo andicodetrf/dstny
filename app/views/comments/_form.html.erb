@@ -1,8 +1,6 @@
 <h5>Post a Comment</h5>
 <%= form_for [ @question, @comment ] do |f| %>
     <p>
-        <%#= f.label :comment_text %>
-        <%# <br/> %>
         <%= f.text_area :comment_text, class:"form-control" %>
     </p>
     <div class="form-row">
@@ -10,14 +8,6 @@
         <%= f.file_field :comment_images, multiple: true, direct_upload: true, class: "btn btn-dark btn-sm" %>
     </div>
     <p>
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <%= f.submit 'Comment', class:"btn btn-primary btn-sm ml-2" %>
-=======
         <%= f.submit 'Comment', class:"btn btn-success btn-sm ml-2" %>
->>>>>>> included edit button
-=======
-        <%= f.submit 'Comment', class:"btn btn-success btn-sm ml-2" %>
->>>>>>> included edit button
     </p>
 <% end %>
