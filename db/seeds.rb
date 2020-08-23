@@ -84,14 +84,13 @@ o_seed = [
 
 c_seed.each_with_index do |c, idx|
   Category.create(
-    id: idx + 1,
     cat_type: c,
   )
 end
 
 q_seed.each_with_index do |q, idx|
   Question.create!(
-    id: idx + 1,
+
     question_text: q["question_text"],
     description: q["description"],
     expiry_date: Time.now + rand(6) * 60 * 60,
